@@ -1,5 +1,9 @@
 <script>
+  import Todo from './components/Todo.vue';
   export default {
+    components:{
+      Todo
+    },
     data(){
       return{
         todoText:'',
@@ -23,6 +27,7 @@
       <label for="todo" class="form-label">Todo Input</label>
       <input type="email" class="form-control" id="todo" placeholder="할일을 입력하세요">
     </div>
+    <Todo v-for="todo in todos" :key="todo.id" :todo="todo"></Todo>
   </div>
 </template>
 
