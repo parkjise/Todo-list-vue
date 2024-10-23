@@ -16,6 +16,17 @@
           },
         ]
       }
+    },
+    methods:{
+      AddTodo(e){
+        console.log(e.target.value)
+        this.todos.push({
+          id:Math.random(),
+          text:e.target.value,
+          checked:false
+        })
+        this.todoText = ''
+      }
     }
   }
 </script>
@@ -25,7 +36,7 @@
     <h1 class="text-center">Todo App</h1>
     <div class="mb-3">
       <label for="todo" class="form-label">Todo Input</label>
-      <input type="email" class="form-control" id="todo" placeholder="할일을 입력하세요">
+      <input type="email" class="form-control" id="todo" placeholder="할일을 입력하세요" @keyup.enter="AddTodo" v-model="todoText">
     </div>
     <Todo v-for="todo in todos" :key="todo.id" :todo="todo"></Todo>
   </div>
