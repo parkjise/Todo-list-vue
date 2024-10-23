@@ -6,6 +6,7 @@
     },
     data(){
       return{
+        todoid:2,
         todoText:'',
         todos:[
           {
@@ -26,6 +27,11 @@
           checked:false
         })
         this.todoText = ''
+      },
+      toggleCheck({id,checked}){
+        const index = this.todos.findIndex(todo => todo.id === id);
+        this.todos[index].checked = checked;
+        console.log(this.todos)
       }
     }
   }
@@ -38,7 +44,7 @@
       <label for="todo" class="form-label">Todo Input</label>
       <input type="email" class="form-control" id="todo" placeholder="할일을 입력하세요" @keyup.enter="AddTodo" v-model="todoText">
     </div>
-    <Todo v-for="todo in todos" :key="todo.id" :todo="todo"></Todo>
+    <Todo v-for="todo in todos" :key="todo.id" :todo="todo" @toggle-checkbox="toggleCheck" />
   </div>
 </template>
 
